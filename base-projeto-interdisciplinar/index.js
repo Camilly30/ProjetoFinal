@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/pessoas', async function(req, res){
   try {
-    var pessoas = await Pessoa.select();//
+    var pessoas = await Pessoa.select();//selecionar pessoa
     res.json(pessoas.rows);
   } catch (error) {
     console.error('Erro ao buscar pessoas:', error);
@@ -23,6 +23,16 @@ app.get('/pessoas', async function(req, res){
   }
 });
 
+app.post('/pessoas', async function(req, res){
+  try {
+    var pessoas = await Pessoa.insert();//inserir pessoa
+    res.json(pessoas.rows);
+  } catch (error) {
+    console.error('Erro ao inserir pessoas:', error);
+    res.status(500).json({ error: 'Ocorreu um erro ao inserir pessoas' });
+  }
+});
+
 app.listen(3000, function() {
-  console.log('App de Exemplo escutando na porta 3000!')
+  console.log('Funcionando perfeitamente na porta 3000!!!!')
 });
