@@ -39,7 +39,7 @@ class Pessoa {
   static async delete(id) {
     try {
       const connect = await db.connect();
-      const sql = "";
+      const sql = "DELETE FROM pessoas WHERE id=$1 ";
       return await connect.query(sql, [id]);
     } catch (error) {
       console.error('Erro em delete:', error);

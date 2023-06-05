@@ -33,6 +33,17 @@ app.post('/pessoas', async function(req, res){
   }
 });
 
+app.delete('/pessoas', async function(req, res){
+  try {
+    var pessoas = await Pessoa.delete(req.body.id);//deletar pessoa
+    res.json(pessoas.rows);
+  } catch (error) {
+    console.error('Erro ao deletar pessoas:', error);
+    res.status(500).json({ error: 'Ocorreu um erro ao deletar pessoas' });
+  }
+});
+
+
 app.listen(3000, function() {
   console.log('Funcionando perfeitamente na porta 3000!!!!')
 });
