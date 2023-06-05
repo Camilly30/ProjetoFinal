@@ -25,7 +25,7 @@ app.get('/pessoas', async function(req, res){
 
 app.post('/pessoas', async function(req, res){
   try {
-    var pessoas = await Pessoa.insert();//inserir pessoa
+    var pessoas = await Pessoa.insert(req.body);//inserir pessoa
     res.json(pessoas.rows);
   } catch (error) {
     console.error('Erro ao inserir pessoas:', error);
